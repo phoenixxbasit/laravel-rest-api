@@ -1,64 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Laravel Task REST API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+This Laravel project serves as a REST API for managing tasks. It provides CRUD (Create, Read, Update, Delete) operations for tasks through a well-defined API.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Project Structure
+- **app/Http/Controllers/TaskController.php:** Controller responsible for handling task-related API endpoints.
+- **app/Models/Task.php:** Model representing the Task entity.
+- **database/migrations/YYYY_MM_DD_create_tasks_table.php:** Database migration for creating the tasks table.
+- **routes/api.php:** API route definitions.
+- **tests/Feature/TaskTest.php:** PHPUnit test cases for the Task API.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## API Endpoints
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. List all Tasks
 
-## Learning Laravel
+```http
+GET /api/tasks
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Returns a JSON array of all tasks.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Get a Task by ID
 
-## Laravel Sponsors
+```http
+GET /api/tasks/{task}
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Returns a JSON object representing a specific task.
 
-### Premium Partners
+### 3. Create a New Task
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```http
+POST /api/tasks
+```
 
-## Contributing
+Creates a new task with the provided data. Requires a JSON payload with `title` and `description` fields.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Update an Existing Task
 
-## Code of Conduct
+```http
+PUT /api/tasks/{task}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Updates an existing task identified by `{task}`. Requires a JSON payload with `title` and `description` fields.
 
-## Security Vulnerabilities
+### 5. Delete a Task
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```http
+DELETE /api/tasks/{task}
+```
 
-## License
+Deletes an existing task identified by `{task}`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Installation and Local Setup
+
+Follow these steps to set up the Laravel project locally:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/phoenixxbasit/laravel-rest-api.git .
+   ```
+
+2. **Install Dependencies:**
+
+   ```bash
+   composer install
+   ```
+
+3. **Set Up Environment:**
+
+   Copy the `.env.example` file to `.env` and configure your database settings.
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Generate Application Key:**
+
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Run Migrations:**
+
+   ```bash
+   php artisan migrate
+   ```
+
+6. **Start the Laravel Development Server:**
+
+   ```bash
+   php artisan serve
+   ```
+
+   Open your browser and navigate to [http://localhost:8000](http://localhost:8000) to access the API.
+
+## Contribution Guidelines
+
+> [!Important]
+> We welcome and appreciate contributions from the community! <br>
+> Please ensure that your contributions adhere to the existing coding standards, include appropriate tests, and provide clear documentation.
